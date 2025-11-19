@@ -1,0 +1,26 @@
+local null_ls = require("null-ls")
+
+null_ls.setup({
+	sources = {
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.clang_format,
+		null_ls.builtins.formatting.black,
+	},
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			local group = vim.api.nvim_create_augroup("LspFormatting" .. bufnr, { clear = true })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = group,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({
+						async = false,
+						filter = function(c)
+							return c.name == "null-ls"
+						end,
+					})
+				end,
+			})
+		end
+	end,
+})
