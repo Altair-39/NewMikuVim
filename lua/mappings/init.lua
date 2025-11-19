@@ -19,6 +19,11 @@ map("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
 -- ToggleTerm
 map("n", "<leader>tt", ":ToggleTerm<CR>", opts)
 
+-- Substitute
+map({ "n", "x" }, "<leader>fs", function()
+	require("rip-substitute").sub()
+end, { desc = "Search and replace with rip-substitute" })
+
 -- navigate buffers easily
 map("n", "<Tab>", ":bnext<CR>", { silent = true })
 map("n", "<S-Tab>", ":bprevious<CR>", { silent = true })

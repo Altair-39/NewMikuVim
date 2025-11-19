@@ -5,6 +5,7 @@ local mods = {
 	"plugins.utility.autopairs",
 	"plugins.utility.which-key",
 	"plugins.utility.telescope",
+	"plugins.utility.substitute",
 	"plugins.utility.render-markdown",
 	"plugins.lsp.languages.rust",
 	"plugins.utility.rustaceanvim",
