@@ -7,6 +7,7 @@ local mods = {
 	"plugins.utility.telescope",
 	"plugins.utility.substitute",
 	"plugins.utility.treesitter",
+	"plugins.utility.diagnostic",
 	"plugins.utility.render-markdown",
 	"plugins.lsp.languages.rust",
 	"plugins.utility.rustaceanvim",

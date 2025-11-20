@@ -24,6 +24,11 @@ map({ "n", "x" }, "<leader>fs", function()
 	require("rip-substitute").sub()
 end, { desc = "Search and replace with rip-substitute" })
 
+-- Diagnostics
+map("n", "<leader>de", "<cmd>TinyInlineDiag enable<cr>", { desc = "Enable diagnostics" })
+map("n", "<leader>dd", "<cmd>TinyInlineDiag disable<cr>", { desc = "Disable diagnostics" })
+map("n", "<leader>dt", "<cmd>TinyInlineDiag toggle<cr>", { desc = "Toggle diagnostics" })
+
 -- navigate buffers easily
 map("n", "<Tab>", ":bnext<CR>", { silent = true })
 map("n", "<S-Tab>", ":bprevious<CR>", { silent = true })
