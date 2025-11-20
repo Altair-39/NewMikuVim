@@ -4,7 +4,7 @@ local plugins = {}
 -- List your modules
 local modules = {
 	"plugins.completion",
-	--"plugins.lsp",
+	"plugins.lsp.languages.jdlts",
 	"plugins.lsp.plugins",
 	"plugins.utility",
 	"plugins.ui",
@@ -20,8 +20,11 @@ for _, module in ipairs(modules) do
 end
 
 require("lazy").setup(plugins)
+
 local neopywal = require("neopywal")
-neopywal.setup()
+require("neopywal").setup({
+	use_wallust = true,
+})
 vim.cmd.colorscheme("neopywal")
 -- Executed after plugins are loaded
 require("plugins.lsp.on-attach")     -- keymaps & autoformat
@@ -34,6 +37,7 @@ require("colorizer").setup({
 		mode = "foreground",
 	},
 })
+
 require("tiny-inline-diagnostic").setup()
 vim.diagnostic.config({
 	signs = {

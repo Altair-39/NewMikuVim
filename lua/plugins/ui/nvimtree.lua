@@ -9,6 +9,17 @@ return {
 				view = { width = 30, side = "left" },
 				renderer = { highlight_git = true },
 				filters = { dotfiles = false },
+				diagnostics = {
+					enable = true,
+					show_on_dirs = true, -- Show diagnostics on directories too
+					show_on_open_dirs = true,
+					icons = {
+						hint = "",
+						info = "",
+						warning = "",
+						error = "",
+					},
+				},
 			})
 		end,
 	},
