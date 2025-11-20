@@ -1,10 +1,8 @@
--- ~/.config/nvim/lua/plugins/init.lua
+-- ~/.config/nvim/lua/plugins/ui/colors.lua
 return {
-	{
-		"AlphaTechnolog/pywal.nvim",
-		as = "pywal",
-		config = function()
-			require("pywal").setup()
-		end,
-	},
+	"RedsXDD/neopywal.nvim",
+	name = "neopywal",
+	lazy = false,
+	priority = 1000,
+	opts = {},
 }
