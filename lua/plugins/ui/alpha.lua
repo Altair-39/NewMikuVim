@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/plugins/ui/plugins.lua
+-- ~/.config/nvim/lua/plugins/ui/alpha.lua
 return {
 	{
 		"goolord/alpha-nvim",
