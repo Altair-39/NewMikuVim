@@ -5,7 +5,6 @@ local modules = {
 	require("plugins.ui.noice"),
 	require("plugins.ui.lualine"),
 	require("plugins.ui.barbar"),
-	require("plugins.ui.barbecue"),
 	require("plugins.ui.alpha"),
 }
 
