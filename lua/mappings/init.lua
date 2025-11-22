@@ -6,11 +6,11 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- General mappings
-map("n", "<C-s>", ":w<CR>", { desc = "Save file" })
-map("n", "<C-q>", ":q<CR>", { desc = "Quit" })
+map("n", "<C-s>", ":w<CR>", opts)
+map("n", "<C-q>", ":q<CR>", opts)
 
 -- Nvim-tree toggle (Ctrl+N)
-map("n", "<C-n>", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
+map("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files" })
@@ -30,9 +30,9 @@ map("n", "<leader>dd", "<cmd>TinyInlineDiag disable<cr>", { desc = "Disable diag
 map("n", "<leader>dt", "<cmd>TinyInlineDiag toggle<cr>", { desc = "Toggle diagnostics" })
 
 -- Buffer navigation
-map("n", "<Tab>", ":bnext<CR>", { desc = "Next buffer" })
-map("n", "<S-Tab>", ":bprevious<CR>", { desc = "Previous buffer" })
-map("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
+map("n", "<Tab>", ":bnext<CR>", opts)
+map("n", "<S-Tab>", ":bprevious<CR>", opts)
+map("n", "<leader>bd", ":bdelete<CR>", opts)
 
 -- LSP (General)
 map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
