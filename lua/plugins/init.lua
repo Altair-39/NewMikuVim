@@ -20,14 +20,15 @@ for _, module in ipairs(modules) do
 end
 
 require("lazy").setup(plugins)
+require("trouble").setup()
 local neopywal = require("neopywal")
 require("neopywal").setup({
 	use_wallust = true,
 })
 vim.cmd.colorscheme("neopywal")
 -- Executed after plugins are loaded
-require("plugins.lsp.on-attach") -- keymaps & autoformat
-require("plugins.lsp.languages.c") -- lua_ls configuration
+require("plugins.lsp.on-attach")     -- keymaps & autoformat
+require("plugins.lsp.languages.c")   -- lua_ls configuration
 require("plugins.lsp.languages.lua") -- lua_ls configuration
 require("colorizer").setup({
 	"css",
@@ -77,7 +78,7 @@ end
 vim.o.undodir = undodir
 
 -- Optional: nicer undo behavior
-vim.o.undolevels = 1000 -- how many undo steps to keep
+vim.o.undolevels = 1000  -- how many undo steps to keep
 vim.o.undoreload = 10000 -- max lines to save for undo
 
 -- latex

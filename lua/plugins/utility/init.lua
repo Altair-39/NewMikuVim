@@ -9,6 +9,7 @@ local mods = {
 	"plugins.utility.treesitter",
 	"plugins.utility.diagnostic",
 	"plugins.utility.render-markdown",
+	"plugins.utility.trouble",
 	"plugins.lsp.languages.rust",
 	"plugins.utility.rustaceanvim",
 	"plugins.lsp.languages.latex",
