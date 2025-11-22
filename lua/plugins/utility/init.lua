@@ -13,7 +13,7 @@ local mods = {
 	"plugins.lsp.languages.rust",
 	"plugins.utility.rustaceanvim",
 	"plugins.lsp.languages.latex",
-	--	"plugins.lsp.languages.jdlts",
+	"plugins.lsp.languages.jdlts",
 }
 local plugins = {}
 for _, mod_name in ipairs(mods) do
