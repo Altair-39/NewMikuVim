@@ -3,7 +3,7 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 	config = function()
 		require("tiny-inline-diagnostic").setup()
-
+		vim.diagnostic.config({ virtual_text = false })
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "TinyInlineDiagnosticReady",
 			once = true,

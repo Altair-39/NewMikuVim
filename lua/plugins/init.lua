@@ -38,7 +38,21 @@ require("colorizer").setup({
 	},
 })
 
-require("tiny-inline-diagnostic").setup()
+require("tiny-inline-diagnostic").setup({
+	preset = "amongus",
+
+	options = {
+		add_messages = {
+			display_count = true,
+		},
+		multilines = {
+			enabled = true,
+		},
+		show_source = {
+			if_many = true, -- Only show source if multiple sources exist for the same diagnostic
+		},
+	},
+})
 vim.diagnostic.config({
 	signs = {
 		-- you can set custom symbols/text for each severity
@@ -48,23 +62,10 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.INFO] = "»",
 			[vim.diagnostic.severity.HINT] = "⚑",
 		},
-		-- optional: highlight groups for signs, etc. Usually the default texthl is fine
-		-- texthl = {
-		--   [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-		--   [vim.diagnostic.severity.WARN]  = "DiagnosticSignWarn",
-		--   [vim.diagnostic.severity.INFO]  = "DiagnosticSignInfo",
-		--   [vim.diagnostic.severity.HINT]  = "DiagnosticSignHint",
-		-- },
-		-- you can also set priority, or turn off signs per severity, etc.
-		-- priority = <number>, -- default is something like 10
 	},
 	-- other diagnostic settings:
 	update_in_insert = false,
 	underline = true,
-	virtual_text = {
-		spacing = 2,
-		severity = { min = vim.diagnostic.severity.ERROR },
-	},
 	severity_sort = true,
 })
 -- Enable persistent undo
