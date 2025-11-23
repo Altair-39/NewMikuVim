@@ -37,11 +37,13 @@ return {
 
 			-- Buttons
 			dashboard.section.buttons.val = {
-				dashboard.button("e", "  New file", ":ene <BAR> startinsert<CR>"),
-				dashboard.button("s", "  Settings", ":e ~/.config/nvim/init.lua<CR>"),
-				dashboard.button("q", "  Quit", ":qa<CR>"),
+				dashboard.button("e", " New file", ":ene <BAR> startinsert<CR>"),
+				dashboard.button("f", " Find files", ":Telescope find_files<CR>"),
+				dashboard.button("g", " Live grep", ":Telescope live_grep<CR>"),
+				dashboard.button("b", " Recent files", ":Telescope oldfiles<CR>"),
+				dashboard.button("s", " Settings", ":e ~/.config/nvim/init.lua<CR>"),
+				dashboard.button("q", " Quit", ":qa<CR>"),
 			}
-
 			alpha.setup(dashboard.opts)
 		end,
 	},

@@ -15,8 +15,9 @@ map("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 -- Telescope
 map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files" })
 map("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Live grep" })
-map("n", "<leader>fc", ":Telescope git_commits<CR>", { desc = "Find commits" })
+map("n", "<leader>fo", ":Telescope oldfiles<CR>", { desc = "See recent files" })
 map("n", "<leader>fd", ":Telescope diagnostics<CR>", { desc = "See diagnostics" })
+map("n", "<leader>fc", ":Telescope git_commits<CR>", { desc = "Find commits" })
 map("n", "<leader>ft", ":Telescope git_status<CR>", { desc = "See git status" })
 
 -- ToggleTerm
