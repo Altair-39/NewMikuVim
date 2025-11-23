@@ -1,7 +1,6 @@
--- ~/.config/nvim/lua/plugins/init.lua
-local plugins = {}
+local M = {}
 
--- List your modules
+-- Plugin module definitions
 local modules = {
 	"plugins.completion",
 	"plugins.lsp.languages.jdlts",
@@ -10,90 +9,122 @@ local modules = {
 	"plugins.ui",
 }
 
-for _, module in ipairs(modules) do
-	local ok, mod = pcall(require, module)
-	if ok and mod then
-		vim.list_extend(plugins, mod)
-	else
-		vim.notify("Failed to load plugin module: " .. module, vim.log.levels.WARN)
+function M.load_plugins()
+	local plugins = {}
+
+	for _, module in ipairs(modules) do
+		local ok, mod = pcall(require, module)
+		if ok and mod then
+			vim.list_extend(plugins, mod)
+		else
+			vim.notify("Failed to load plugin module: " .. module, vim.log.levels.WARN)
+		end
 	end
+
+	require("lazy").setup(plugins)
 end
 
-require("lazy").setup(plugins)
-require("trouble").setup()
-local neopywal = require("neopywal")
-require("neopywal").setup({
-	use_wallust = true,
-})
-vim.cmd.colorscheme("neopywal")
--- Executed after plugins are loaded
-require("plugins.lsp.on-attach")     -- keymaps & autoformat
-require("plugins.lsp.languages.c")   -- lua_ls configuration
-require("plugins.lsp.languages.lua") -- lua_ls configuration
-require("colorizer").setup({
-	"css",
-	"javascript",
-	html = {
-		mode = "foreground",
-	},
-})
-
-require("tiny-inline-diagnostic").setup({
-	preset = "amongus",
-
-	options = {
-		add_messages = {
-			display_count = true,
-		},
-		multilines = {
-			enabled = true,
-		},
-		show_source = {
-			if_many = true, -- Only show source if multiple sources exist for the same diagnostic
-		},
-	},
-})
-vim.diagnostic.config({
-	signs = {
-		-- you can set custom symbols/text for each severity
-		text = {
-			[vim.diagnostic.severity.ERROR] = "✘",
-			[vim.diagnostic.severity.WARN] = "▲",
-			[vim.diagnostic.severity.INFO] = "»",
-			[vim.diagnostic.severity.HINT] = "⚑",
-		},
-	},
-	-- other diagnostic settings:
-	update_in_insert = false,
-	underline = true,
-	severity_sort = true,
-})
--- Enable persistent undo
-vim.o.undofile = true
-
--- Set a directory to store undo files
-local undodir = vim.fn.stdpath("data") .. "/undo"
-if vim.fn.isdirectory(undodir) == 0 then
-	vim.fn.mkdir(undodir, "p")
+function M.setup_lsp()
+	-- LSP configuration
+	require("plugins.lsp.on-attach") -- keymaps & autoformat
+	require("plugins.lsp.languages.c") -- c configuration
+	require("plugins.lsp.languages.lua") -- lua_ls configuration
 end
-vim.o.undodir = undodir
 
--- Optional: nicer undo behavior
-vim.o.undolevels = 1000  -- how many undo steps to keep
-vim.o.undoreload = 10000 -- max lines to save for undo
+function M.setup_plugins()
+	-- Trouble setup
+	require("trouble").setup()
 
--- latex
-local cmp = require("cmp")
+	-- Neopywal setup
+	local neopywal = require("neopywal")
+	require("neopywal").setup({
+		use_wallust = true,
+	})
+	vim.cmd.colorscheme("neopywal")
 
-cmp.setup.filetype("tex", {
-	sources = {
-		{ name = "path" }, -- enables filesystem completion (for \include{…})
-		{ name = "buffer" },
-		{ name = "luasnip" },
-	},
-	mapping = cmp.mapping.preset.insert({
-		["<Tab>"] = cmp.mapping.select_next_item(),
-		["<S-Tab>"] = cmp.mapping.select_prev_item(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-	}),
-})
+	-- Colorizer setup
+	require("colorizer").setup({
+		"css",
+		"javascript",
+		html = {
+			mode = "foreground",
+		},
+	})
+
+	-- Tiny inline diagnostic setup
+	require("tiny-inline-diagnostic").setup({
+		preset = "amongus",
+		options = {
+			add_messages = {
+				display_count = true,
+			},
+			multilines = {
+				enabled = true,
+			},
+			show_source = {
+				if_many = true,
+			},
+		},
+	})
+end
+
+function M.setup_diagnostics()
+	-- Diagnostic configuration
+	vim.diagnostic.config({
+		signs = {
+			text = {
+				[vim.diagnostic.severity.ERROR] = "✘",
+				[vim.diagnostic.severity.WARN] = "▲",
+				[vim.diagnostic.severity.INFO] = "»",
+				[vim.diagnostic.severity.HINT] = "⚑",
+			},
+		},
+		update_in_insert = false,
+		underline = true,
+		severity_sort = true,
+	})
+end
+
+function M.setup_undo()
+	-- Persistent undo configuration
+	vim.o.undofile = true
+
+	local undodir = vim.fn.stdpath("data") .. "/undo"
+	if vim.fn.isdirectory(undodir) == 0 then
+		vim.fn.mkdir(undodir, "p")
+	end
+
+	vim.o.undodir = undodir
+	vim.o.undolevels = 1000
+	vim.o.undoreload = 10000
+end
+
+function M.setup_latex()
+	-- LaTeX-specific completion
+	local cmp = require("cmp")
+
+	cmp.setup.filetype("tex", {
+		sources = {
+			{ name = "path" },
+			{ name = "buffer" },
+			{ name = "luasnip" },
+		},
+		mapping = cmp.mapping.preset.insert({
+			["<Tab>"] = cmp.mapping.select_next_item(),
+			["<S-Tab>"] = cmp.mapping.select_prev_item(),
+			["<CR>"] = cmp.mapping.confirm({ select = true }),
+		}),
+	})
+end
+
+function M.init()
+	-- Load everything in order
+	M.load_plugins()
+	M.setup_plugins()
+	M.setup_lsp()
+	M.setup_diagnostics()
+	M.setup_undo()
+	M.setup_latex()
+end
+
+return M

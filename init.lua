@@ -22,7 +22,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.whichwrap:append("<,>,[,],h,l")
 
 -- Load plugins
-require("plugins") -- This now works
+require("plugins").init() -- This now works
 
 -- Load mappings
 require("mappings")
