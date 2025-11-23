@@ -43,13 +43,7 @@ function M.setup_plugins()
 	vim.cmd.colorscheme("neopywal")
 
 	-- Colorizer setup
-	require("colorizer").setup({
-		"css",
-		"javascript",
-		html = {
-			mode = "foreground",
-		},
-	})
+	require("colorizer").setup()
 
 	-- Tiny inline diagnostic setup
 	require("tiny-inline-diagnostic").setup({
