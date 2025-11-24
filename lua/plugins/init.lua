@@ -36,11 +36,21 @@ function M.setup_plugins()
 	require("trouble").setup()
 
 	-- Neopywal setup
-	local neopywal = require("neopywal")
 	require("neopywal").setup({
 		use_wallust = true,
 	})
 	vim.cmd.colorscheme("neopywal")
+	local has_lualine, lualine = pcall(require, "lualine")
+	if not has_lualine then
+		return
+	end
+
+	local has_neopywal, neopywal_lualine = pcall(require, "neopywal.theme.plugins.lualine")
+	if not has_neopywal then
+		return
+	end
+
+	neopywal_lualine.setup()
 
 	-- Colorizer setup
 	require("colorizer").setup()
