@@ -157,9 +157,9 @@ return {
 				ins_left({
 					"filename",
 					cond = conditions.buffer_not_empty,
-					color = { fg = colors.color7 },
+					color = { fg = colors.color3 },
 					symbols = {
-						modified = "  ",
+						modified = "  ",
 						readonly = "  ",
 						unnamed = "[No Name]",
 					},
