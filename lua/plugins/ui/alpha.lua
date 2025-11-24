@@ -41,6 +41,11 @@ return {
 				dashboard.button("f", " Find files", ":Telescope find_files<CR>"),
 				dashboard.button("g", " Live grep", ":Telescope live_grep<CR>"),
 				dashboard.button("b", " Recent files", ":Telescope oldfiles<CR>"),
+				dashboard.button(
+					"o",
+					" Recent files in dir",
+					":lua require('telescope.builtin').oldfiles({cwd = vim.fn.getcwd(), only_cwd = true})<CR>"
+				),
 				dashboard.button("s", " Settings", ":e ~/.config/nvim/init.lua<CR>"),
 				dashboard.button("q", " Quit", ":qa<CR>"),
 			}
