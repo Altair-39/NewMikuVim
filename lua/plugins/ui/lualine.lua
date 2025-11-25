@@ -5,7 +5,6 @@ return {
 		event = "VeryLazy",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
-			"nyngwang/neopywal.nvim",
 		},
 		config = function()
 			local lualine = require("lualine")
