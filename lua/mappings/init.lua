@@ -23,6 +23,40 @@ map("n", "<leader>fd", ":Telescope diagnostics<CR>", { desc = "See diagnostics" 
 map("n", "<leader>fc", ":Telescope git_commits<CR>", { desc = "Find commits" })
 map("n", "<leader>ft", ":Telescope git_status<CR>", { desc = "See git status" })
 
+-- Harpoon
+map("n", "<leader>ha", function()
+	require("harpoon.mark").add_file()
+end, { desc = "Harpoon add file" })
+map("n", "<leader>hh", function()
+	require("harpoon.ui").toggle_quick_menu()
+end, { desc = "Harpoon menu" })
+map("n", "<leader>1", function()
+	require("harpoon.ui").nav_file(1)
+end, { desc = "Harpoon to file 1" })
+map("n", "<leader>2", function()
+	require("harpoon.ui").nav_file(2)
+end, { desc = "Harpoon to file 2" })
+map("n", "<leader>3", function()
+	require("harpoon.ui").nav_file(3)
+end, { desc = "Harpoon to file 3" })
+map("n", "<leader>4", function()
+	require("harpoon.ui").nav_file(4)
+end, { desc = "Harpoon to file 4" })
+map("n", "<leader>5", function()
+	require("harpoon.ui").nav_file(5)
+end, { desc = "Harpoon to file 5" })
+map("n", "<leader>ht", function()
+	require("telescope").extensions.harpoon.marks(require("telescope.themes").get_dropdown({}))
+end, { desc = "Harpoon telescope" })
+
+-- Navigate between harpoon marks
+map("n", "<A-p>", function()
+	require("harpoon.ui").nav_prev()
+end, { desc = "Harpoon previous" })
+map("n", "<A-n>", function()
+	require("harpoon.ui").nav_next()
+end, { desc = "Harpoon next" })
+
 -- ToggleTerm
 map("n", "<leader>tt", ":ToggleTerm<CR>", { desc = "Toggle terminal" })
 
