@@ -11,8 +11,9 @@ local M = {}
 map("n", "<C-s>", ":w<CR>", opts)
 map("n", "<C-q>", ":q<CR>", opts)
 
--- Nvim-tree toggle (Ctrl+N)
+-- Oil
 map("n", "<C-n>", ":Oil<CR>", opts)
+map("n", "<leader>-", require("oil").toggle_float)
 
 -- Telescope
 map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files" })
