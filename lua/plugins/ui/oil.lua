@@ -17,4 +17,9 @@ return {
 			vim.keymap.set("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open Oil file explorer" })
 		end,
 	},
+	{
+		"JezerM/oil-lsp-diagnostics.nvim",
+		dependencies = { "stevearc/oil.nvim" },
+		opts = {},
+	},
 }
