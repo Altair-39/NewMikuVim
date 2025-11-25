@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/plugins/ui/nvimtree.lua
+-- ~/.config/nvim/lua/plugins/ui/oil.lua
 return {
 	{
 		"stevearc/oil.nvim",
@@ -21,5 +21,10 @@ return {
 		"JezerM/oil-lsp-diagnostics.nvim",
 		dependencies = { "stevearc/oil.nvim" },
 		opts = {},
+	},
+	{
+		"benomahony/oil-git.nvim",
+		dependencies = { "stevearc/oil.nvim" },
+		-- No opts or config needed! Works automatically
 	},
 }
