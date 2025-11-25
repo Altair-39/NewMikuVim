@@ -1,6 +1,6 @@
 -- lua/plugins/ui/init.lua
 local modules = {
-	require("plugins.ui.nvimtree"),
+	require("plugins.ui.oil"),
 	require("plugins.ui.colors"),
 	require("plugins.ui.noice"),
 	require("plugins.ui.lualine"),

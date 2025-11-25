@@ -12,7 +12,7 @@ map("n", "<C-s>", ":w<CR>", opts)
 map("n", "<C-q>", ":q<CR>", opts)
 
 -- Nvim-tree toggle (Ctrl+N)
-map("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
+map("n", "<C-n>", ":Oil<CR>", opts)
 
 -- Telescope
 map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files" })
