@@ -4,8 +4,8 @@ local modules = {
 	require("plugins.ui.colors"),
 	require("plugins.ui.noice"),
 	require("plugins.ui.lualine"),
-	require("plugins.ui.barbar"),
 	require("plugins.ui.alpha"),
+	require("plugins.ui.dropbar"),
 }
 
 local plugins = {}
