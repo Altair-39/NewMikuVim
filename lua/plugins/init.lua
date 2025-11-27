@@ -26,9 +26,6 @@ end
 
 function M.setup_lsp()
 	-- LSP configuration
-	require("plugins.lsp.on-attach") -- keymaps & autoformat
-	require("plugins.lsp.languages.c") -- c configuration
-	require("plugins.lsp.languages.lua") -- lua_ls configuration
 end
 
 function M.setup_plugins()
@@ -105,19 +102,17 @@ end
 
 function M.setup_latex()
 	-- LaTeX-specific completion
-	local cmp = require("cmp")
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-	cmp.setup.filetype("tex", {
-		sources = {
-			{ name = "path" },
-			{ name = "buffer" },
-			{ name = "luasnip" },
+	capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities({}, false))
+
+	capabilities = vim.tbl_deep_extend("force", capabilities, {
+		textDocument = {
+			foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			},
 		},
-		mapping = cmp.mapping.preset.insert({
-			["<Tab>"] = cmp.mapping.select_next_item(),
-			["<S-Tab>"] = cmp.mapping.select_prev_item(),
-			["<CR>"] = cmp.mapping.confirm({ select = true }),
-		}),
 	})
 end
 

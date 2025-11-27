@@ -11,6 +11,17 @@ local M = {}
 map("n", "<C-s>", ":w<CR>", opts)
 map("n", "<C-q>", ":q<CR>", opts)
 
+-- Dropbar
+map("n", "<Leader>;", function()
+	require("dropbar.api").pick()
+end, { desc = "Pick symbols in winbar" })
+map("n", "[;", function()
+	require("dropbar.api").goto_context_start()
+end, { desc = "Go to start of current context" })
+map("n", "];", function()
+	require("dropbar.api").select_next_context()
+end, { desc = "Select next context" })
+
 -- Oil
 map("n", "<C-n>", ":Oil<CR>", opts)
 map("n", "<leader>-", require("oil").toggle_float)
@@ -129,37 +140,32 @@ map(
 map("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
 map("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
 
--- Completion mappings (for cmp setup)
-function M.cmp_mappings()
-	local cmp = require("cmp")
-	local luasnip = require("luasnip")
+-- Blink shell mappings (for blink setup)
+function M.blink_mappings()
+	local blink = require("blink")
 
-	return cmp.mapping.preset.insert({
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<C-Space>"] = cmp.mapping.complete(),
+	return {
+		-- Confirm selection (similar to <CR> in cmp)
+		["\r"] = blink.mapping.confirm_select,
 
-		-- Tab to select next item or expand snippet
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+		-- Trigger completion (similar to <C-Space> in cmp)
+		["\x1b "] = blink.mapping.show_completions, -- Ctrl+Space
 
-		-- Shift-Tab to select previous item or jump backwards in snippet
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	})
+		-- Tab to select next item
+		["\t"] = blink.mapping.select_next_item,
+
+		-- Shift-Tab to select previous item
+		["\x1b[Z"] = blink.mapping.select_prev_item,
+
+		-- Additional useful Blink mappings
+		["\x1b[A"] = blink.mapping.navigate_up, -- Up arrow
+		["\x1b[B"] = blink.mapping.navigate_down, -- Down arrow
+		["\x1b[C"] = blink.mapping.navigate_right, -- Right arrow
+		["\x1b[D"] = blink.mapping.navigate_left, -- Left arrow
+
+		-- Cycle through completion sources
+		["\x1b\t"] = blink.mapping.cycle_sources,
+	}
 end
 
 return M
