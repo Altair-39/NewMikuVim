@@ -31,7 +31,11 @@ end
 function M.setup_plugins()
 	-- Trouble setup
 	require("trouble").setup()
+
+	-- Mini setup
 	require("mini.files").setup({})
+	require("mini.icons").setup({})
+
 	-- Neopywal setup
 	require("neopywal").setup({
 		use_wallust = true,

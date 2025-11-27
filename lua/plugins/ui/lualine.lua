@@ -4,9 +4,14 @@ return {
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			"nvim-tree/nvim-web-devicons",
+			"nvim-tree/mini.icons",
 		},
 		config = function()
+			-- mini.icons
+			require("mini.icons").setup()
+
+			-- mock nvim-web-devicons to use mini.icons instead
+			require("mini.icons").mock_nvim_web_devicons()
 			local lualine = require("lualine")
 
 			-- Function to setup lualine with current colors

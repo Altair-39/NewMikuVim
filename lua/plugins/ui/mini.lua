@@ -3,4 +3,7 @@ return {
 	{
 		"nvim-mini/mini.files",
 	},
+	{
+		"nvim-mini/mini.icons",
+	},
 }
