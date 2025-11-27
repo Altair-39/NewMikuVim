@@ -22,9 +22,16 @@ map("n", "];", function()
 	require("dropbar.api").select_next_context()
 end, { desc = "Select next context" })
 
--- Oil
-map("n", "<C-n>", ":Oil<CR>", opts)
-map("n", "<leader>-", require("oil").toggle_float)
+-- Replace Oil with mini.files
+local minifiles_toggle = function(...)
+	if not MiniFiles.close() then
+		MiniFiles.open(...)
+	end
+end
+map("n", "<C-n>", minifiles_toggle, opts)
+map("n", "<leader>-", function()
+	require("mini.files").toggle_float()
+end)
 
 -- Telescope
 map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files" })

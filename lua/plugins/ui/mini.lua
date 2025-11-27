@@ -1,0 +1,6 @@
+-- ~/.config/nvim/lua/plugins/ui/mini.lua
+return {
+	{
+		"nvim-mini/mini.files",
+	},
+}
