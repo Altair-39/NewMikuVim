@@ -4,7 +4,7 @@ return {
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			"nvim-tree/mini.icons",
+			"nvim-mini/mini.icons",
 		},
 		config = function()
 			-- mini.icons
