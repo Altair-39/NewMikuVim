@@ -22,7 +22,11 @@ map("n", "];", function()
 	require("dropbar.api").select_next_context()
 end, { desc = "Select next context" })
 
--- Replace Oil with mini.files
+-- Undotree
+map("n", "<C-u>", ":UndotreeToggle<CR>")
+map("n", "<C-i>", ":UndotreeFocus<CR>")
+
+-- mini.files
 local minifiles_toggle = function(...)
 	if not MiniFiles.close() then
 		MiniFiles.open(...)

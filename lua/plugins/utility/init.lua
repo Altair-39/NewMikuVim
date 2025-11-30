@@ -11,6 +11,7 @@ local mods = {
 	"plugins.utility.render-markdown",
 	"plugins.utility.trouble",
 	"plugins.utility.dap",
+	"plugins.utility.undotree",
 	"plugins.utility.harpoon",
 	"plugins.lsp.languages.rust",
 	"plugins.utility.rustaceanvim",
